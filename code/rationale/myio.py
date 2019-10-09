@@ -15,7 +15,8 @@ def read_rationales(path):
     fopen = gzip.open if path.endswith(".gz") else open
     with fopen(path, 'rb') as fin:
         for line in fin:
-            line = line.decode('ascii')
+            line = line.decode('utf8')
+           # line = line.decode('ascii')
             item = json.loads(line)
             data.append(item)
     return data
@@ -25,7 +26,8 @@ def read_annotations(path):
     fopen = gzip.open if path.endswith(".gz") else open
     with fopen(path, 'rb') as fin:
         for line in fin:
-            line = line.decode('ascii')
+            line = line.decode('utf8')
+            #line = line.decode('ascii')
             y, sep, x = line.partition("\t")
             x, y = x.split(), y.split()
             if len(x) == 0: continue
@@ -84,3 +86,4 @@ def create_one_batch(lstx, lsty, padding_id):
                         constant_values=padding_id) for x in lstx ])
     by = np.vstack(lsty).astype(theano.config.floatX)
     return bx, by
+
