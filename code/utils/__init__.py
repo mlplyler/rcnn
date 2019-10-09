@@ -14,7 +14,7 @@ def load_embedding_iterator(path):
         for line in fin:
             line = line.strip()
             if line:
-                line = line.decode('ascii')
+                #line = line.decode('ascii')
                 parts = line.split()
                 word = parts[0]
                 vals = np.array([ float(x) for x in parts[1:] ])
